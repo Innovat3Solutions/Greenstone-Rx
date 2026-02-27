@@ -1,64 +1,94 @@
-import { ArrowUpRight, FileText } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowUpRight } from 'lucide-react';
+
+const heroImages = [
+  '/assets/images/hero/main_hero.png',
+  '/assets/images/hero/vials_hero.png',
+  '/assets/images/hero/weight_loss_hero.png',
+  '/assets/images/hero/anti_aging_hero.png'
+];
 
 export default function Hero() {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative pt-32 pb-20 px-8 min-h-[95vh] flex flex-col justify-center overflow-hidden">
-      {/* Background Image/Gradient */}
+    <section id="home" className="relative pt-32 pb-24 px-8 min-h-[90vh] flex flex-col justify-center overflow-hidden">
+      {/* Background Image Carousel */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[#0a0a0a]/80 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a0a]/50 to-[#0a0a0a] z-20" />
-        <img 
-          src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=2000" 
-          alt="Medical background" 
-          className="w-full h-full object-cover opacity-30"
-        />
-        
-        {/* Abstract 3D shapes placeholder */}
-        <div className="absolute right-1/4 top-1/4 w-96 h-96 bg-[#5CE1E6]/10 rounded-full blur-3xl z-10" />
-        <div className="absolute left-1/4 bottom-1/4 w-96 h-96 bg-[#C4A47C]/10 rounded-full blur-3xl z-10" />
+        {heroImages.map((image, index) => (
+          <img
+            key={image}
+            src={image}
+            alt="Medical background"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              index === currentImage ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+        {/* Subtle dark gradient from left to right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/15 to-transparent z-10" />
       </div>
 
-      <div className="relative z-30 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div className="space-y-8">
-          <h1 className="text-6xl md:text-8xl font-medium tracking-tighter leading-[1.05] font-display">
+      {/* Main Content */}
+      <div className="relative z-30 max-w-7xl mx-auto w-full">
+        <div className="max-w-2xl">
+          {/* Main Heading */}
+          <h1
+            className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-[1.1] font-display text-white"
+            style={{ textShadow: '0 4px 20px rgba(75,75,75,0.5), 0 2px 8px rgba(50,50,50,0.3)' }}
+          >
             Cutting-Edge<br />Peptides
           </h1>
-          
-          <div className="flex items-center gap-4 pt-4">
-            <button className="bg-[#5CE1E6] text-black px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-[#4bc5ca] transition-colors">
-              Open shop
-              <div className="bg-white rounded-full p-1">
-                <ArrowUpRight className="w-4 h-4" />
-              </div>
-            </button>
-          </div>
 
-          <div className="inline-flex items-center gap-2 bg-[#1a1a1a] border border-white/10 rounded-full px-5 py-2.5 mt-12 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-            <span className="text-sm text-gray-300">Got 25% off your first order</span>
-          </div>
-        </div>
-
-        <div className="flex flex-col justify-between h-full pt-12 lg:pt-0">
-          <p className="text-gray-400 max-w-sm ml-auto text-right text-lg leading-relaxed">
-            Explore our full catalog, read verified reviews, and experience the power of advanced peptide therapy — trusted by thousands worldwide.
+          {/* Subtext */}
+          <p className="mt-6 text-lg text-white max-w-md leading-relaxed" style={{ textShadow: '0 2px 12px rgba(75,75,75,0.4)' }}>
+            Premium compounded medications with verified purity, backed by rigorous third-party lab testing.
           </p>
 
-          <div className="mt-auto flex justify-end pt-32">
-            <div className="bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 p-5 rounded-2xl flex items-center gap-4 max-w-xs shadow-2xl">
-              <div className="bg-white/10 p-3 rounded-xl">
-                <FileText className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <a href="#" className="text-sm font-medium underline underline-offset-4 hover:text-[#5CE1E6] transition-colors">
-                  [View Lab Reports]
-                </a>
-                <p className="text-xs text-gray-500 mt-1.5 leading-relaxed">
-                  All products undergo rigorous third-party lab testing for purity, potency, and safety.
-                </p>
-              </div>
-            </div>
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap items-center gap-4 mt-8">
+            <a
+              href="#products"
+              className="bg-gradient-to-r from-brand-green-light via-brand-green-primary to-brand-green-dark text-white px-8 py-4 rounded-full font-medium flex items-center gap-3 hover:opacity-90 transition-opacity shadow-lg"
+            >
+              Explore Products
+              <ArrowUpRight className="w-5 h-5" />
+            </a>
+            <a
+              href="#about"
+              className="bg-white/90 backdrop-blur-sm text-gray-800 px-8 py-4 rounded-full font-medium hover:bg-white transition-colors border border-gray-200 shadow-md"
+            >
+              Learn More
+            </a>
+          </div>
+
+          {/* Trust Badge */}
+          <div className="mt-12 inline-flex items-center gap-3 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full px-5 py-3 shadow-md">
+            <div className="w-2 h-2 bg-brand-green-dark rounded-full animate-pulse"></div>
+            <span className="text-sm text-gray-700 font-medium">25% off your first order</span>
           </div>
         </div>
+      </div>
+
+      {/* Carousel Indicators */}
+      <div className="absolute bottom-8 left-8 z-40 flex gap-2">
+        {heroImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImage(index)}
+            className={`h-1 rounded-full transition-all ${
+              index === currentImage ? 'bg-brand-green-dark w-8' : 'bg-gray-400/40 w-4 hover:bg-gray-400/60'
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
