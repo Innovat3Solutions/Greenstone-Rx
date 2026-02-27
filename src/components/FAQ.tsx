@@ -69,14 +69,14 @@ export default function FAQ() {
   );
 
   return (
-    <section id="faq" className="py-20 px-8 max-w-7xl mx-auto">
+    <section id="faq" className="py-16 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="text-center mb-12">
-        <p className="text-brand-green-dark text-sm font-semibold tracking-wider uppercase mb-4">FAQ</p>
-        <h2 className="text-4xl md:text-5xl font-medium font-display mb-4">
+      <div className="text-center mb-8 sm:mb-12">
+        <p className="text-brand-green-dark text-sm font-semibold tracking-wider uppercase mb-3 sm:mb-4">FAQ</p>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium font-display mb-3 sm:mb-4">
           Frequently Asked Questions
         </h2>
-        <p className="text-gray-500 max-w-xl mx-auto">
+        <p className="text-gray-500 max-w-xl mx-auto text-sm sm:text-base">
           Everything you need to know about our products and services.
         </p>
       </div>

@@ -20,7 +20,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative pt-32 pb-24 px-8 min-h-[90vh] flex flex-col justify-center overflow-hidden">
+    <section id="home" className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-8 min-h-[85vh] sm:min-h-[90vh] flex flex-col justify-center overflow-hidden">
       {/* Background Image Carousel */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((image, index) => (
@@ -42,36 +42,36 @@ export default function Hero() {
         <div className="max-w-2xl">
           {/* Main Heading */}
           <h1
-            className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-[1.1] font-display text-white"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-[1.1] font-display text-white"
             style={{ textShadow: '0 4px 20px rgba(75,75,75,0.5), 0 2px 8px rgba(50,50,50,0.3)' }}
           >
             Cutting-Edge<br />Peptides
           </h1>
 
           {/* Subtext */}
-          <p className="mt-6 text-lg text-white max-w-md leading-relaxed" style={{ textShadow: '0 2px 12px rgba(75,75,75,0.4)' }}>
+          <p className="mt-4 sm:mt-6 text-base sm:text-lg text-white max-w-md leading-relaxed" style={{ textShadow: '0 2px 12px rgba(75,75,75,0.4)' }}>
             Premium compounded medications with verified purity, backed by rigorous third-party lab testing.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center gap-4 mt-8">
+          <div className="flex items-center gap-3 sm:gap-4 mt-6 sm:mt-8">
             <a
               href="#products"
-              className="bg-gradient-to-r from-brand-green-light via-brand-green-primary to-brand-green-dark text-white px-8 py-4 rounded-full font-medium flex items-center gap-3 hover:opacity-90 transition-opacity shadow-lg"
+              className="bg-gradient-to-r from-brand-green-light via-brand-green-primary to-brand-green-dark text-white px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium flex items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity shadow-lg text-sm sm:text-base"
             >
               Explore Products
-              <ArrowUpRight className="w-5 h-5" />
+              <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
             <a
               href="#about"
-              className="bg-white/90 backdrop-blur-sm text-gray-800 px-8 py-4 rounded-full font-medium hover:bg-white transition-colors border border-gray-200 shadow-md"
+              className="bg-white/90 backdrop-blur-sm text-gray-800 px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium hover:bg-white transition-colors border border-gray-200 shadow-md text-sm sm:text-base"
             >
               Learn More
             </a>
           </div>
 
           {/* Trust Badge */}
-          <div className="mt-12 inline-flex items-center gap-3 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full px-5 py-3 shadow-md">
+          <div className="mt-8 sm:mt-12 inline-flex items-center gap-2 sm:gap-3 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full px-4 sm:px-5 py-2 sm:py-3 shadow-md">
             <div className="w-2 h-2 bg-brand-green-dark rounded-full animate-pulse"></div>
             <span className="text-sm text-gray-700 font-medium">25% off your first order</span>
           </div>
@@ -79,7 +79,7 @@ export default function Hero() {
       </div>
 
       {/* Carousel Indicators */}
-      <div className="absolute bottom-8 left-8 z-40 flex gap-2">
+      <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 z-40 flex gap-2">
         {heroImages.map((_, index) => (
           <button
             key={index}

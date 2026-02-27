@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { User, ShoppingCart, X, Minus, Plus } from 'lucide-react';
+import { User, ShoppingCart, X, Minus, Plus, Menu } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
@@ -11,6 +11,7 @@ export default function Navbar() {
   const isContactPage = location.pathname === '/contact';
 
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const cartRef = useRef<HTMLDivElement>(null);
   const { items, removeItem, updateQuantity, totalItems, totalPrice } = useCart();
 
@@ -25,14 +26,19 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location]);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 bg-gradient-to-b from-white/90 to-transparent backdrop-blur-sm text-black">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 bg-gradient-to-b from-white/90 to-transparent backdrop-blur-sm text-black">
       <div className="flex items-center gap-2">
         <Link to="/">
           <img
             src="/assets/images/brand/Greenstone Logo.svg"
             alt="Greenstone Rx"
-            className="h-10"
+            className="h-8 sm:h-10"
             style={{ filter: 'drop-shadow(0 0 12px rgba(255,255,255,0.9)) drop-shadow(0 0 20px rgba(255,255,255,0.7))' }}
           />
         </Link>
@@ -56,13 +62,21 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-colors bg-white/80"
+        >
+          {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+        </button>
+
         {/* Vendor Login */}
         <a
           href="https://bloom.greenstonerx.com/register"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-colors bg-white/80"
+          className="hidden sm:flex w-10 h-10 rounded-full border border-gray-200 items-center justify-center hover:bg-gray-100 transition-colors bg-white/80"
           title="Vendor Login"
         >
           <User className="w-4 h-4" />
@@ -164,6 +178,38 @@ export default function Navbar() {
           )}
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-200 md:hidden">
+          <div className="flex flex-col p-4 space-y-2">
+            <Link to="/" className="px-4 py-3 text-sm font-medium hover:bg-gray-100 rounded-lg transition-colors text-black">
+              Home
+            </Link>
+            <Link to="/shop" className={`px-4 py-3 text-sm font-medium rounded-lg transition-colors ${isShopPage ? 'bg-brand-green-dark/10 text-brand-green-dark' : 'hover:bg-gray-100 text-gray-600'}`}>
+              Shop
+            </Link>
+            <Link to="/services" className={`px-4 py-3 text-sm font-medium rounded-lg transition-colors ${isServicesPage ? 'bg-brand-green-dark/10 text-brand-green-dark' : 'hover:bg-gray-100 text-gray-600'}`}>
+              Services
+            </Link>
+            <Link to="/about" className={`px-4 py-3 text-sm font-medium rounded-lg transition-colors ${isAboutPage ? 'bg-brand-green-dark/10 text-brand-green-dark' : 'hover:bg-gray-100 text-gray-600'}`}>
+              About
+            </Link>
+            <Link to="/contact" className={`px-4 py-3 text-sm font-medium rounded-lg transition-colors ${isContactPage ? 'bg-brand-green-dark/10 text-brand-green-dark' : 'hover:bg-gray-100 text-gray-600'}`}>
+              Contact
+            </Link>
+            <a
+              href="https://bloom.greenstonerx.com/register"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-3 text-sm font-medium hover:bg-gray-100 rounded-lg transition-colors text-gray-600 flex items-center gap-2"
+            >
+              <User className="w-4 h-4" />
+              Vendor Login
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

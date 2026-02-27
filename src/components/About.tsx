@@ -34,41 +34,41 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-24 px-8 max-w-7xl mx-auto">
-      <div className="flex justify-between items-end mb-16">
+    <section id="about" className="py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto">
+      <div className="flex justify-between items-end mb-10 sm:mb-16">
         <div className="max-w-3xl">
-          <p className="text-brand-green-dark text-sm font-semibold tracking-wider uppercase mb-6">About Us</p>
-          <h2 className="text-4xl md:text-5xl font-medium leading-tight text-gray-600 font-display">
+          <p className="text-brand-green-dark text-sm font-semibold tracking-wider uppercase mb-4 sm:mb-6">About Us</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight text-gray-600 font-display">
             <span className="text-black">Welcome to Greenstone Rx</span> — your trusted source for premium-quality, lab-tested peptides.
           </h2>
         </div>
       </div>
 
       {/* Quote Section */}
-      <div className="mb-16 max-w-4xl">
+      <div className="mb-10 sm:mb-16 max-w-4xl">
         <blockquote className="relative">
-          <div className="text-5xl text-brand-green-dark absolute -top-4 -left-2 font-serif">"</div>
-          <p className="text-xl md:text-2xl text-gray-700 leading-relaxed pl-8 italic">
+          <div className="text-4xl sm:text-5xl text-brand-green-dark absolute -top-2 sm:-top-4 -left-1 sm:-left-2 font-serif">"</div>
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed pl-6 sm:pl-8 italic">
             I've been in this field long enough to know that the details are what separate good pharmacy care from great. When I review a medication regimen, I'm not just checking boxes — I'm thinking about that specific patient, their history, what actually works for them. That's the standard we hold ourselves to here.
           </p>
-          <p className="text-gray-500 mt-6 pl-8 text-base">
+          <p className="text-gray-500 mt-4 sm:mt-6 pl-6 sm:pl-8 text-sm sm:text-base">
             Our owners and operators are locally based and actively involved in daily operations, ensuring dependability and immediate access to key decision-makers.
           </p>
         </blockquote>
-        <div className="flex items-center gap-4 mt-8 pl-8">
-          <div className="w-12 h-12 rounded-full bg-brand-green-dark flex items-center justify-center text-white font-semibold text-sm">
+        <div className="flex items-center gap-3 sm:gap-4 mt-6 sm:mt-8 pl-6 sm:pl-8">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-green-dark flex items-center justify-center text-white font-semibold text-xs sm:text-sm">
             KC
           </div>
           <div>
-            <p className="font-medium text-black font-display">Kaila C.</p>
-            <p className="text-sm text-gray-500">Lead Pharmacist</p>
+            <p className="font-medium text-black font-display text-sm sm:text-base">Kaila C.</p>
+            <p className="text-xs sm:text-sm text-gray-500">Lead Pharmacist</p>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Carousel */}
-        <div className="lg:col-span-2 relative rounded-3xl overflow-hidden h-[450px]">
+        <div className="lg:col-span-2 relative rounded-2xl sm:rounded-3xl overflow-hidden h-[300px] sm:h-[450px]">
           {slides.map((slide, index) => (
             <div
               key={index}
@@ -82,15 +82,15 @@ export default function About() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-10 left-10 right-10 text-white">
-                <h3 className="text-3xl font-medium mb-3 font-display">{slide.title}</h3>
-                <p className="text-white/80 text-sm leading-relaxed mb-6 max-w-md">{slide.description}</p>
+              <div className="absolute bottom-6 sm:bottom-10 left-4 sm:left-10 right-4 sm:right-10 text-white">
+                <h3 className="text-xl sm:text-3xl font-medium mb-2 sm:mb-3 font-display">{slide.title}</h3>
+                <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 max-w-md hidden sm:block">{slide.description}</p>
                 <div className="flex gap-2">
                   {slides.map((_, dotIndex) => (
                     <button
                       key={dotIndex}
                       onClick={() => setCurrentSlide(dotIndex)}
-                      className={`h-1 w-16 rounded-full transition-colors ${
+                      className={`h-1 w-8 sm:w-16 rounded-full transition-colors ${
                         dotIndex === currentSlide ? 'bg-white' : 'bg-white/30 hover:bg-white/50'
                       }`}
                     />
@@ -101,7 +101,7 @@ export default function About() {
           ))}
         </div>
 
-        <div className="bg-gray-50 border border-gray-200 rounded-3xl p-8 flex flex-col h-[450px]">
+        <div className="bg-gray-50 border border-gray-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 flex flex-col h-auto lg:h-[450px]">
           <p className="text-brand-green-dark text-xs font-semibold tracking-wider uppercase mb-4">Why Choose Us</p>
 
           <div className="flex flex-col gap-2 mb-6">
@@ -136,18 +136,18 @@ export default function About() {
         </div>
       </div>
 
-      <div className="flex gap-4 mt-8">
+      <div className="flex gap-3 sm:gap-4 mt-6 sm:mt-8">
         <button
           onClick={prevSlide}
-          className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition-colors shadow-md"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition-colors shadow-md"
         >
-          <ArrowLeft className="w-5 h-5" />
+          <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button
           onClick={nextSlide}
-          className="w-12 h-12 rounded-full border border-gray-300 bg-white text-black flex items-center justify-center hover:bg-gray-50 transition-colors shadow-sm"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-gray-300 bg-white text-black flex items-center justify-center hover:bg-gray-50 transition-colors shadow-sm"
         >
-          <ArrowRight className="w-5 h-5" />
+          <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>
     </section>
